@@ -21,14 +21,14 @@ There appears to be three main groups of CTRs:
 
 I split this variable into three categorical bins to capture this information.
 
-![CTR_by_Day](/Users/scotthuhn/Downloads/Snip20170107_19.png)
+![CTR_by_Day](/assets/Snip20170107_19.png)
 
 B) Past Purchases
 
 Repeat customers are more likely to click through than new customers. In the future it may make sense to optimize two models; one for new customers and one for return customers. It would be interesting to explore if the behaviors of these two groups are different.
 
 
-![CTR_by_Day](/Users/scotthuhn/Downloads/Snip20170107_20.png)
+![CTR_by_Day](/assets/Snip20170107_20.png)
 
 C) Hour
 
@@ -38,7 +38,7 @@ The volume at each hour varied greatly. Most emails were sent out in the morning
 - 13 - 18
 - 19 - 24
 
-![CTR_by_Day](/Users/scotthuhn/Downloads/Snip20170107_21.png)
+![CTR_by_Day](/assets/Snip20170107_21.png)
 
 I tuned a random forest classifier and logistic regression on the transformed dataset. Both models performed significantly better on the training data (and cross validated data) than the testing data, suggesting some degree of overfit. **My goal was to determine the features most important to a user's CTR.** Although the precision scores for both models are low (~3.8%), the accuracy and recall were acceptably high. The low precision suggests that the model had a high FPR. This was an acceptance tradeoff given the goal of this test.
 
@@ -50,7 +50,7 @@ I tuned a random forest classifier and logistic regression on the transformed da
 
  Are the four most important variable that we as a company have control over. Targeting these variables in future email campaigns would maximize our CTR.
 
-![CTR_by_Day](/Users/scotthuhn/Downloads/Snip20170107_22.png)
+![CTR_by_Day](/assets/Snip20170107_22.png)
 
 ## Q3
 By how much do you think your model would improve click through rate ( defined as # of users who click on the link / total users who received the email). How would you test that?
