@@ -27,12 +27,11 @@ B) Past Purchases
 
 Repeat customers are more likely to click through than new customers. In the future it may make sense to optimize two models; one for new customers and one for return customers. It would be interesting to explore if the behaviors of these two groups are different.
 
-
 ![CTR_by_Day](/assets/Snip20170107_20.png)
 
 C) Hour
 
-The volume at each hour varied greatly. Most emails were sent out in the morning hours. I decided to bucket the hours into four sections:
+The volume at each hour varied greatly. Most emails were sent out in the morning hours. I decided to bucket the hours into four sections based on interpretability. Although the first three buckets have significant volumes, the fourth bucket should be viewed with some skepticism due to it's low volume (<100 emails).
 - 1 - 6
 - 7 - 12
 - 13 - 18
@@ -40,7 +39,13 @@ The volume at each hour varied greatly. Most emails were sent out in the morning
 
 ![CTR_by_Day](/assets/Snip20170107_21.png)
 
-I tuned a random forest classifier and logistic regression on the transformed dataset. Both models performed significantly better on the training data (and cross validated data) than the testing data, suggesting some degree of overfit. **My goal was to determine the features most important to a user's CTR.** Although the precision scores for both models are low (~3.8%), the accuracy and recall were acceptably high. The low precision suggests that the model had a high FPR. This was an acceptance tradeoff given the goal of this test.
+*There are two main sets of features in the dataset; email characteristics and user characteristics. Ideally, based on a set of user-characteristics, we'd craft an email that would optimize the CTR.*
+
+I tuned a random forest classifier and logistic regression on the transformed dataset. Both models performed significantly better on the training data (and cross validated data) than the testing data, suggesting some degree of overfit. **My goal was to determine the features most important to a user's CTR.** Ultimately both models suffered from the severe class imbalance of the dataset. They were effective at predicting the majority class (no click) and not the minority class (click). I attempted to counteract class imbalance by:
+- SMOTE / upsampling
+- Changing the logistic regression threshold
+
+Both methods were unsuccessful at raising the precision of the model. We should therefore look at the following feature importances with skepticism. They are worth investigating more through some naive bais simulations.
 
  Graphing the feature importances of the random forest classifier, it can be seen that:
  - is_personalized
