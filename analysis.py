@@ -160,9 +160,9 @@ def calc_beta_prob(df_grouped, num_samples = 100000):
     return np.mean(new_samples - old_samples > .015)
 
 if __name__ == '__main__':
-    df_email = pd.read_csv('email_table.csv')
-    df_email_open = pd.read_csv('email_opened_table.csv')
-    df_email_click = pd.read_csv('link_clicked_table.csv')
+    df_email = pd.read_csv('assets/email_table.csv')
+    df_email_open = pd.read_csv('assets/email_opened_table.csv')
+    df_email_click = pd.read_csv('assets/link_clicked_table.csv')
 
     #Setup DF
     df_email_click['clicked'] = True
